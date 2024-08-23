@@ -16,4 +16,7 @@
    "workbench.colorTheme": "Default Dark+",
    "terminal.integrated.gpuAcceleration": "canvas",
    "editor.defaultFormatter": "junstyle.vscode-django-support",
+   "[html]": {
+      "editor.defaultFormatter": "HookyQR.beautify"
+   },
 }

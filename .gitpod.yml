@@ -9,8 +9,11 @@ vscode:
     - ms-python.python
     - formulahendry.auto-close-tag
     - eventyret.bootstrap-4-cdn-snippet
-    - hookyqr.beautify
     - matt-rudge.auto-open-preview-panel
     - ms-toolsai.jupyter
     - ms-toolsai.jupyter-keymap
     - ms-toolsai.jupyter-renderers
+    - monosans.djlint
+    - ms-python.autopep8
+    - batisteo.vscode-django
+    - ms-python.debugpy
