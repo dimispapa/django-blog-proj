@@ -8,6 +8,19 @@ from .forms import CommentForm
 
 # Create your views here.
 class PostList(generic.ListView):
+    """
+    Display the list of posts using a generic ListView.
+
+    **Context**
+
+    ``queryset``
+        A collection of :model:`blog.Post` objects with status set to 1
+        ("Published").
+
+    **Template**
+
+    :template:`blog/index.html`
+    """
     queryset = Post.objects.filter(status=1)
     template_name = "blog/index.html"
     paginate_by = 6
@@ -22,7 +35,16 @@ def post_detail(request, slug):
     ``post``
         An instance of :model:`blog.Post`.
 
-    **Template:**
+    ``comment``
+        All approved comments related to the post.
+        
+    ``comment_count``
+        A count of approved comments related to the post.
+        
+    ``comment_form``
+        An instance of :form:`forms.CommentForm`
+
+    **Template**
 
     :template:`blog/post_detail.html`
     """
@@ -32,7 +54,6 @@ def post_detail(request, slug):
     comment_count = post.comments.filter(approved=True).count()
 
     if request.method == "POST":
-        print("Received a POST request")
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
@@ -46,7 +67,6 @@ def post_detail(request, slug):
 
     comment_form = CommentForm()
 
-    print("About to render template")
     return render(
         request,
         "blog/post_detail.html",
@@ -61,7 +81,18 @@ def post_detail(request, slug):
 
 def comment_edit(request, slug, comment_id):
     """
-    view to edit comments
+    Handles the edit comment route and renders a redirect HTTP response.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+
+    ``comment``
+        An instance of :model:`blog.Comment`.
+
+    ``comment_form``
+        An instance of :form:`forms.CommentForm`.
     """
     if request.method == "POST":
 
@@ -85,10 +116,13 @@ def comment_edit(request, slug, comment_id):
 
 def comment_delete(request, slug, comment_id):
     """
-    view to delete comment
+    Handles the delete comment route and renders a redirect HTTP response.
+
+    **Context**
+
+    ``comment``
+        An instance of :model:`blog.Comment`.
     """
-    queryset = Post.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
     comment = get_object_or_404(Comment, pk=comment_id)
 
     if comment.author == request.user:
