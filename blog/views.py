@@ -37,10 +37,10 @@ def post_detail(request, slug):
 
     ``comment``
         All approved comments related to the post.
-        
+
     ``comment_count``
         A count of approved comments related to the post.
-        
+
     ``comment_form``
         An instance of :form:`forms.CommentForm`
 

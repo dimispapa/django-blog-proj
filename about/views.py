@@ -7,7 +7,8 @@ from .forms import CollaborateForm
 # Create your views here.
 def about_me(request):
     """
-    Renders the most recent info on the website author and allows user collaboration requests.
+    Renders the most recent info on the website author and allows user
+    collaboration requests.
     Displays an individual instance of :model:`about.About`.
 
     **Context**
@@ -30,7 +31,8 @@ def about_me(request):
             collaborate_form.save()
             messages.add_message(
                 request, messages.SUCCESS,
-                'Collaboration request received! I endeavour to respond within 2 working days.'
+                'Collaboration request received! I endeavour to respond within'
+                ' 2 working days.'
             )
 
     collaborate_form = CollaborateForm()
